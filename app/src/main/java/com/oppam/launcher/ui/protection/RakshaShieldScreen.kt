@@ -45,7 +45,8 @@ fun RakshaShieldScreen(
     onNavigateBack: () -> Unit
 ) {
     val context = LocalContext.current
-    val repository = remember { FakeBehaviorRepository() }
+    val repository = remember { FakeBehaviorRepository.getInstance() }
+    val alertHelper = remember { AlertNotificationHelper.getInstance(context) }
     
     // Voice assistant
     val voiceAssistant = remember {
@@ -165,6 +166,10 @@ fun RakshaShieldScreen(
             onDetectScam = {
                 showScamAlert = true
                 repository.simulateScamDetection()
+                
+                // Trigger notification to caregiver
+                alertHelper.triggerScamAlert("+91 98765 43210")
+                
                 voiceAssistant.sayScamDetected()
                 
                 // Auto-dismiss after showing alert

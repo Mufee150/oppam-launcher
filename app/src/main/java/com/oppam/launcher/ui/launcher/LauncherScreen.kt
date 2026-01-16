@@ -147,19 +147,22 @@ fun LauncherScreen(
                     .padding(top = 16.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
+                // Discrete caregiver access button
                 TextButton(
                     onClick = { onNavigateToCaregiver() },
-                    modifier = Modifier.height(60.dp)
+                    modifier = Modifier.height(56.dp)
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.Settings,
-                        contentDescription = "Settings",
-                        modifier = Modifier.size(32.dp)
+                        imageVector = Icons.Filled.AdminPanelSettings,
+                        contentDescription = "Caregiver Access",
+                        modifier = Modifier.size(28.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Caregiver Dashboard",
-                        fontSize = 18.sp
+                        text = "Caregiver",
+                        fontSize = 16.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                     )
                 }
             }

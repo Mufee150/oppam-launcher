@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -11,7 +12,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -23,12 +26,13 @@ import com.oppam.launcher.ui.components.ElderHeading
 import java.time.format.DateTimeFormatter
 
 /**
- * Caregiver Dashboard
+ * Caregiver Dashboard - Monitoring Mode
  * Shows:
  * - Current risk level
- * - Recent alerts
+ * - Recent alerts and notifications
  * - Behavior change graph (simplified)
- * - Last alert timestamp
+ * - Last activity timestamp
+ * - Quick stats
  * 
  * NOTE: All data is simulated for demonstration
  */
@@ -37,25 +41,53 @@ import java.time.format.DateTimeFormatter
 fun CaregiverDashboard(
     onNavigateBack: () -> Unit
 ) {
-    val repository = remember { FakeBehaviorRepository() }
+    val context = LocalContext.current
+    val roleManager = remember { RoleManager.getInstance(context) }
+    val repository = remember { FakeBehaviorRepository.getInstance() }
     val dashboardData by remember { mutableStateOf(repository.getDashboardData()) }
     
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(R.string.caregiver_title),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Filled.Shield,
+                            contentDescription = null,
+                            modifier = Modifier.size(28.dp),
+                            tint = Color.White
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Caregiver Dashboard",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 },
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
+                    IconButton(onClick = {
+                        roleManager.switchToElderlyMode()
+                        onNavigateBack()
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            modifier = Modifier.size(32.dp)
+                            contentDescription = "Back to Launcher",
+                            modifier = Modifier.size(32.dp),
+                            tint = Color.White
+                        )
+                    }
+                },
+                actions = {
+                    // Logout/Switch to elderly mode
+                    IconButton(onClick = {
+                        roleManager.switchToElderlyMode()
+                        onNavigateBack()
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Logout,
+                            contentDescription = "Exit Caregiver Mode",
+                            tint = Color.White
                         )
                     }
                 },
@@ -74,6 +106,78 @@ fun CaregiverDashboard(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // Welcome header
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.primary),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Person,
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = Color.White
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Column {
+                            Text(
+                                text = "Monitoring Mode Active",
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Viewing parent's health & safety status",
+                                fontSize = 16.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                            )
+                        }
+                    }
+                }
+            }
+            
+            // Quick Stats Row
+            item {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    QuickStatCard(
+                        title = "Total Alerts",
+                        value = dashboardData.recentAlerts.size.toString(),
+                        icon = Icons.Filled.Notifications,
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier.weight(1f)
+                    )
+                    QuickStatCard(
+                        title = "Risk Level",
+                        value = dashboardData.currentRiskLevel.name,
+                        icon = Icons.Filled.HealthAndSafety,
+                        color = when (dashboardData.currentRiskLevel) {
+                            RiskLevel.HIGH -> MaterialTheme.colorScheme.error
+                            RiskLevel.MEDIUM -> Color(0xFFFF9800)
+                            RiskLevel.LOW -> Color(0xFF4CAF50)
+                        },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+            
             // Risk Level Card
             item {
                 RiskLevelCard(riskLevel = dashboardData.currentRiskLevel)
@@ -362,6 +466,52 @@ fun AlertCard(alert: Alert) {
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
             }
+        }
+    }
+}
+
+/**
+ * Quick Stat Card Component
+ */
+@Composable
+fun QuickStatCard(
+    title: String,
+    value: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    color: Color,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(
+            containerColor = color.copy(alpha = 0.1f)
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = title,
+                modifier = Modifier.size(32.dp),
+                tint = color
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = value,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = color
+            )
+            Text(
+                text = title,
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
         }
     }
 }

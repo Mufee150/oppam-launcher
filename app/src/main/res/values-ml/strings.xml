@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ഒപ്പം</string>
+    
+    <!-- Role Selection -->
+    <string name="role_selection_subtitle">നിങ്ങൾ ആരാണ്?</string>
+    <string name="role_elderly">ഞാൻ പ്രായമായവനാണ്</string>
+    <string name="role_elderly_desc">ലളിതമായ ഇന്റർഫേസ്</string>
+    <string name="role_caregiver">ഞാൻ പരിചാരകനാണ്</string>
+    <string name="role_caregiver_desc">മോണിറ്ററിംഗ് ഡാഷ്‌ബോർഡ്</string>
+    
+    <!-- Login -->
+    <string name="create_pin_title">പിൻ സൃഷ്ടിക്കുക</string>
+    <string name="create_pin_subtitle">4 അക്ക പിൻ നമ്പർ നൽകുക</string>
+    <string name="enter_pin_title">പിൻ നൽകുക</string>
+    <string name="enter_pin_subtitle">നിങ്ങളുടെ പിൻ നമ്പർ നൽകുക</string>
+    <string name="four_digit_pin">4 അക്ക പിൻ</string>
+    <string name="confirm_pin">പിൻ സ്ഥിരീകരിക്കുക</string>
+    <string name="pin_error">തെറ്റായ പിൻ</string>
+    <string name="btn_login">പ്രവേശിക്കുക</string>
+    <string name="btn_next">അടുത്തത്</string>
+    <string name="create_account">അക്കൗണ്ട് സൃഷ്ടിക്കുക</string>
+    
+    <!-- Launcher Screen -->
+    <string name="btn_call_family">കുടുംബത്തെ വിളിക്കുക</string>
+    <string name="btn_health_log">ആരോഗ്യ കുറിപ്പ്</string>
+    <string name="btn_protection_mode">സുരക്ഷാ മോഡ്</string>
+    <string name="launcher_title">ഒപ്പം</string>
+    <string name="launcher_subtitle">നിങ്ങളുടെ കരുതൽ കൂട്ടുകാരൻ</string>
+    <string name="good_morning">സുപ്രഭാതം</string>
+    <string name="good_afternoon">ഉച്ചയ്ക്ക് ശുഭം</string>
+    <string name="good_evening">സായാഹ്ന ശുഭം</string>
+    
+    <!-- Voice Assistant -->
+    <string name="voice_welcome">സ്വാഗതം</string>
+    <string name="voice_no_fear">പേടിക്കണ്ട, ഞാൻ ഇവിടെ ഉണ്ട്</string>
+    <string name="voice_scam_detected">സൂക്ഷിക്കുക! ഇത് വഞ്ചന വിളിയാകാം</string>
+    <string name="voice_caregiver_alerted">നിങ്ങളുടെ പരിചാരകനെ അറിയിച്ചു</string>
+    
+    <!-- Protection Mode -->
+    <string name="protection_title">സുരക്ഷാ മോഡ്</string>
+    <string name="simulate_scam_call">വഞ്ചന വിളി അനുകരിക്കുക</string>
+    <string name="incoming_call">വരുന്ന കോൾ</string>
+    <string name="scam_warning">⚠️ വഞ്ചന മുന്നറിയിപ്പ് ⚠️</string>
+    <string name="alert_sent">പരിചാരകന് മുന്നറിയിപ്പ് അയച്ചു</string>
+    <string name="btn_answer">ഉത്തരം</string>
+    <string name="btn_reject">നിരസിക്കുക</string>
+    <string name="btn_block">തടയുക</string>
+    <string name="detect_scam">വഞ്ചന കണ്ടെത്തുക</string>
+    
+    <!-- Health Log -->
+    <string name="health_log_title">ആരോഗ്യ കുറിപ്പ്</string>
+    <string name="quick_log">ദ്രുത കുറിപ്പ്</string>
+    <string name="add_health_data">ആരോഗ്യ വിവരങ്ങൾ ചേർക്കുക</string>
+    <string name="todays_medications">ഇന്നത്തെ മരുന്നുകൾ</string>
+    <string name="recent_health_logs">സമീപകാല ആരോഗ്യ കുറിപ്പുകൾ</string>
+    <string name="no_medications">മരുന്നുകളൊന്നും ചേർത്തിട്ടില്ല</string>
+    <string name="no_health_logs">ആരോഗ്യ കുറിപ്പുകളൊന്നുമില്ല</string>
+    
+    <!-- Health Input -->
+    <string name="blood_pressure">രക്തസമ്മർദ്ദം</string>
+    <string name="blood_sugar">രക്തത്തിലെ പഞ്ചസാര</string>
+    <string name="temperature">താപനില</string>
+    <string name="heart_rate">ഹൃദയമിടിപ്പ്</string>
+    <string name="notes">കുറിപ്പുകൾ</string>
+    <string name="save">സേവ് ചെയ്യുക</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+    <string name="systolic">സിസ്റ്റോളിക്</string>
+    <string name="diastolic">ഡയാസ്റ്റോളിക്</string>
+    <string name="notes_optional">കുറിപ്പുകൾ (ഓപ്ഷണൽ)</string>
+    
+    <!-- Voice Input -->
+    <string name="speak_health_update">🎤 ആരോഗ്യ വിവരം പറയുക</string>
+    <string name="listening">കേൾക്കുന്നു…</string>
+    <string name="voice_input_error">ശബ്ദം തിരിച്ചറിയാൻ കഴിഞ്ഞില്ല</string>
+    
+    <!-- Caregiver Dashboard -->
+    <string name="caregiver_title">പരിചാരക ഡാഷ്‌ബോർഡ്</string>
+    <string name="risk_level">അപകട നില</string>
+    <string name="risk_high">ഉയർന്നത്</string>
+    <string name="risk_medium">ഇടത്തരം</string>
+    <string name="risk_low">താഴ്ന്നത്</string>
+    <string name="last_alert">അവസാന മുന്നറിയിപ്പ്</string>
+    <string name="behavior_changes">പെരുമാറ്റ മാറ്റങ്ങൾ</string>
+    <string name="recent_alerts">സമീപകാല മുന്നറിയിപ്പുകൾ</string>
+    
+    <!-- Call Family -->
+    <string name="call_family_title">കുടുംബത്തെ വിളിക്കുക</string>
+    <string name="emergency_contacts">അടിയന്തര സമ്പർക്കങ്ങൾ</string>
+    <string name="call_now">ഇപ്പോൾ വിളിക്കുക</string>
+    
+    <!-- Common -->
+    <string name="back">തിരികെ</string>
+    <string name="close">അടയ്ക്കുക</string>
+    <string name="loading">ലോഡ് ചെയ്യുന്നു…</string>
+    <string name="logout">പുറത്തുകടക്കുക</string>
+    <string name="settings">ക്രമീകരണങ്ങൾ</string>
+</resources>

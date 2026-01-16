@@ -10,7 +10,7 @@ import kotlin.random.Random
  * NOTE: This is NOT connected to any real user data
  * All data is simulated for demonstration purposes
  */
-class FakeBehaviorRepository {
+class FakeBehaviorRepository private constructor() {
     
     private val alerts = mutableListOf<Alert>()
     private val behaviorData = mutableListOf<BehaviorDataPoint>()
@@ -97,6 +97,26 @@ class FakeBehaviorRepository {
     }
     
     /**
+     * Add an existing alert object
+     */
+    fun addAlert(alert: Alert) {
+        alerts.add(0, alert)
+        
+        // Also update behavior data
+        behaviorData.add(
+            BehaviorDataPoint(
+                timestamp = alert.timestamp,
+                riskScore = when (alert.severity) {
+                    Severity.CRITICAL -> 0.9f
+                    Severity.HIGH -> 0.7f
+                    Severity.MEDIUM -> 0.5f
+                    Severity.LOW -> 0.3f
+                }
+            )
+        )
+    }
+    
+    /**
      * Get all alerts
      */
     fun getAlerts(): List<Alert> = alerts.toList()
@@ -146,5 +166,16 @@ class FakeBehaviorRepository {
             message = "Scam call detected and blocked",
             severity = Severity.HIGH
         )
+    }
+    
+    companion object {
+        @Volatile
+        private var instance: FakeBehaviorRepository? = null
+        
+        fun getInstance(): FakeBehaviorRepository {
+            return instance ?: synchronized(this) {
+                instance ?: FakeBehaviorRepository().also { instance = it }
+            }
+        }
     }
 }

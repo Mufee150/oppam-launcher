@@ -10,8 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.oppam.launcher.data.RoleManager
+import com.oppam.launcher.data.UserRole
+import com.oppam.launcher.ui.auth.ElderlyLoginScreen
+import com.oppam.launcher.ui.auth.RoleSelectionScreen
 import com.oppam.launcher.ui.callfamily.CallFamilyScreen
 import com.oppam.launcher.ui.caregiver.CaregiverDashboard
+import com.oppam.launcher.ui.caregiver.CaregiverLoginScreen
 import com.oppam.launcher.ui.healthlog.HealthLogScreen
 import com.oppam.launcher.ui.launcher.LauncherScreen
 import com.oppam.launcher.ui.protection.RakshaShieldScreen
@@ -35,11 +40,46 @@ class MainActivity : ComponentActivity() {
                 ) {
                     // Navigation setup
                     val navController = rememberNavController()
+                    val roleManager = RoleManager.getInstance(this@MainActivity)
+                    
+                    // Determine start destination
+                    val startDestination = when {
+                        !roleManager.hasElderlyPin() && !roleManager.isCaregiverMode() -> "role_selection"
+                        roleManager.isCaregiverMode() -> "caregiver_dashboard"
+                        else -> "elderly_login"
+                    }
                     
                     NavHost(
                         navController = navController,
-                        startDestination = "launcher"
+                        startDestination = startDestination
                     ) {
+                        // Role Selection Screen
+                        composable("role_selection") {
+                            RoleSelectionScreen(
+                                onRoleSelected = { role ->
+                                    when (role) {
+                                        UserRole.ELDERLY -> navController.navigate("elderly_login")
+                                        UserRole.CAREGIVER -> navController.navigate("caregiver")
+                                    }
+                                }
+                            )
+                        }
+                        
+                        // Elderly Login Screen
+                        composable("elderly_login") {
+                            ElderlyLoginScreen(
+                                onLoginSuccess = {
+                                    navController.navigate("launcher") {
+                                        popUpTo("role_selection") { inclusive = true }
+                                    }
+                                },
+                                onBack = {
+                                    navController.navigate("role_selection") {
+                                        popUpTo("role_selection") { inclusive = true }
+                                    }
+                                }
+                            )
+                        }
                         // Main launcher screen
                         composable("launcher") {
                             LauncherScreen(
@@ -85,11 +125,27 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         
-                        // Caregiver dashboard
+                        // Caregiver login screen
                         composable("caregiver") {
-                            CaregiverDashboard(
+                            CaregiverLoginScreen(
+                                onLoginSuccess = {
+                                    navController.navigate("caregiver_dashboard") {
+                                        popUpTo("caregiver") { inclusive = true }
+                                    }
+                                },
                                 onNavigateBack = {
                                     navController.popBackStack()
+                                }
+                            )
+                        }
+                        
+                        // Caregiver dashboard (after login)
+                        composable("caregiver_dashboard") {
+                            CaregiverDashboard(
+                                onNavigateBack = {
+                                    navController.navigate("launcher") {
+                                        popUpTo("launcher") { inclusive = true }
+                                    }
                                 }
                             )
                         }

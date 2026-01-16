@@ -2,12 +2,34 @@
 <resources>
     <string name="app_name">Oppam</string>
     
+    <!-- Role Selection -->
+    <string name="role_selection_subtitle">Who are you?</string>
+    <string name="role_elderly">I am Elderly</string>
+    <string name="role_elderly_desc">Simple interface for you</string>
+    <string name="role_caregiver">I am Caregiver</string>
+    <string name="role_caregiver_desc">Monitoring dashboard</string>
+    
+    <!-- Login -->
+    <string name="create_pin_title">Create Your PIN</string>
+    <string name="create_pin_subtitle">Enter a 4-digit PIN</string>
+    <string name="enter_pin_title">Enter Your PIN</string>
+    <string name="enter_pin_subtitle">Enter your 4-digit PIN</string>
+    <string name="four_digit_pin">4-Digit PIN</string>
+    <string name="confirm_pin">Confirm PIN</string>
+    <string name="pin_error">Incorrect PIN</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_next">Next</string>
+    <string name="create_account">Create Account</string>
+    
     <!-- Launcher Screen -->
     <string name="btn_call_family">Call Family</string>
     <string name="btn_health_log">Health Log</string>
     <string name="btn_protection_mode">Protection Mode</string>
     <string name="launcher_title">Oppam</string>
     <string name="launcher_subtitle">Your Caring Companion</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="good_afternoon">Good Afternoon</string>
+    <string name="good_evening">Good Evening</string>
     
     <!-- Voice Assistant -->
     <string name="voice_welcome">സ്വാഗതം</string>
@@ -24,6 +46,33 @@
     <string name="btn_answer">Answer</string>
     <string name="btn_reject">Reject</string>
     <string name="btn_block">Block &amp; Report</string>
+    <string name="detect_scam">Detect as Scam</string>
+    
+    <!-- Health Log -->
+    <string name="health_log_title">Health Log</string>
+    <string name="quick_log">Quick Log</string>
+    <string name="add_health_data">Add Health Data</string>
+    <string name="todays_medications">Today\'s Medications</string>
+    <string name="recent_health_logs">Recent Health Logs</string>
+    <string name="no_medications">No medications added</string>
+    <string name="no_health_logs">No health logs yet. Add your first entry!</string>
+    
+    <!-- Health Input -->
+    <string name="blood_pressure">Blood Pressure</string>
+    <string name="blood_sugar">Blood Sugar (mg/dL)</string>
+    <string name="temperature">Temperature (°C)</string>
+    <string name="heart_rate">Heart Rate (bpm)</string>
+    <string name="notes">Notes</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="systolic">Systolic</string>
+    <string name="diastolic">Diastolic</string>
+    <string name="notes_optional">Notes (optional)</string>
+    
+    <!-- Voice Input -->
+    <string name="speak_health_update">🎤 Speak Your Health Update</string>
+    <string name="listening">Listening…</string>
+    <string name="voice_input_error">Could not recognize speech</string>
     
     <!-- Caregiver Dashboard -->
     <string name="caregiver_title">Caregiver Dashboard</string>
@@ -35,12 +84,15 @@
     <string name="behavior_changes">Behavior Changes</string>
     <string name="recent_alerts">Recent Alerts</string>
     
-    <!-- Health Log -->
-    <string name="health_log_title">Health Log</string>
-    <string name="health_coming_soon">Coming Soon</string>
+    <!-- Call Family -->
+    <string name="call_family_title">Call Family</string>
+    <string name="emergency_contacts">Emergency Contacts</string>
+    <string name="call_now">Call Now</string>
     
     <!-- Common -->
     <string name="back">Back</string>
     <string name="close">Close</string>
     <string name="loading">Loading…</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
 </resources>
