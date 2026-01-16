@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permission for Text-to-Speech -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    <!-- Permission for making phone calls -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    
+    <!-- Permission to show app as launcher -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Oppam"
+        tools:targetApi="31">
+
+        <!-- Main Launcher Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Oppam"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+            
+            <!-- Launcher intent filters to make this app appear as a home screen option -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Fake Call Activity for Protection Mode -->
+        <activity
+            android:name=".ui.protection.FakeCallActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Oppam"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
+
+    </application>
+
+</manifest>

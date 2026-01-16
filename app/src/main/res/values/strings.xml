@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Oppam</string>
+    
+    <!-- Launcher Screen -->
+    <string name="btn_call_family">Call Family</string>
+    <string name="btn_health_log">Health Log</string>
+    <string name="btn_protection_mode">Protection Mode</string>
+    <string name="launcher_title">Oppam</string>
+    <string name="launcher_subtitle">Your Caring Companion</string>
+    
+    <!-- Voice Assistant -->
+    <string name="voice_welcome">സ്വാഗതം</string>
+    <string name="voice_no_fear">പേടിക്കണ്ട, ഞാൻ ഇവിടെ ഉണ്ട്</string>
+    <string name="voice_scam_detected">സൂക്ഷിക്കുക! ഇത് വഞ്ചന വിളിയാകാം</string>
+    <string name="voice_caregiver_alerted">നിങ്ങളുടെ പരിചാരകനെ അറിയിച്ചു</string>
+    
+    <!-- Protection Mode -->
+    <string name="protection_title">Protection Mode</string>
+    <string name="simulate_scam_call">Simulate Scam Call</string>
+    <string name="incoming_call">Incoming Call</string>
+    <string name="scam_warning">⚠️ SCAM ALERT ⚠️</string>
+    <string name="alert_sent">Alert sent to caregiver</string>
+    <string name="btn_answer">Answer</string>
+    <string name="btn_reject">Reject</string>
+    <string name="btn_block">Block &amp; Report</string>
+    
+    <!-- Caregiver Dashboard -->
+    <string name="caregiver_title">Caregiver Dashboard</string>
+    <string name="risk_level">Risk Level</string>
+    <string name="risk_high">HIGH</string>
+    <string name="risk_medium">MEDIUM</string>
+    <string name="risk_low">LOW</string>
+    <string name="last_alert">Last Alert</string>
+    <string name="behavior_changes">Behavior Changes</string>
+    <string name="recent_alerts">Recent Alerts</string>
+    
+    <!-- Health Log -->
+    <string name="health_log_title">Health Log</string>
+    <string name="health_coming_soon">Coming Soon</string>
+    
+    <!-- Common -->
+    <string name="back">Back</string>
+    <string name="close">Close</string>
+    <string name="loading">Loading…</string>
+</resources>
